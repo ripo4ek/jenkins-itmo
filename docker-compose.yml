@@ -1,0 +1,18 @@
+version: "2"
+services:
+  jenkins:
+    container_name: lab_jenkins
+    image: jenkinsci/blueocean
+    networks:
+      - jenkNetwork
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker  
+      - ./jenkins_home:/var/jenkins_home
+      - /var/:/var/
+    user: root
+    ports:
+      - "8080:8080"
+      - "50001:50001"
+networks:
+  jenkNetwork:
